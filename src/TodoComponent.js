@@ -22,6 +22,7 @@ const TodoComponent = () => {
     const onChangeTodoFun = (e) => {
         setAddTodo(e.target.value)
     }
+    
     const onAddTodo = async (addTo) => {
         try {
             const res = await postTodoData({ todo: addTo })
@@ -78,14 +79,14 @@ const TodoComponent = () => {
             </div>
             <div className="mainContainer">
                 <div className="todoSectionContainer" >
-                    {todo.map(x => {
+                    {todo?.map(x => {
                         return (
-                            <ul key={todo._id} className="todosContainer">
-                                <li key={todo._id}><h1 className="todoText">{x.todo}</h1>
-                                    <button onClick={(e) => onEditTodo(e, x)} className="actionBtn" hidden={x._id === selectedId}>EDIT</button>
-                                    {x._id === selectedId && <>
-                                        <button onClick={() => onSaveUpdatedTodo(addTodo, x)} className="actionBtn" hidden={todo._id === x._id}> Save</button>
-                                        <button onClick={() => onCancelUpdatedTodo(x)} className="dangerBtn" hidden={todo._id === x._id}>Cancel</button>
+                            <ul key={todo?._id} className="todosContainer">
+                                <li key={todo?._id}><h1 className="todoText">{x?.todo}</h1>
+                                    <button onClick={(e) => onEditTodo(e, x)} className="actionBtn" hidden={x?._id === selectedId}>EDIT</button>
+                                    {x?._id === selectedId && <>
+                                        <button onClick={() => onSaveUpdatedTodo(addTodo, x)} className="actionBtn" hidden={todo?._id === x?._id}> Save</button>
+                                        <button onClick={() => onCancelUpdatedTodo(x)} className="dangerBtn" hidden={todo?._id === x?._id}>Cancel</button>
                                     </>}
                                     <button onClick={() => onDeleteTodo(x)} className="dangerBtn" >DELETE</button>
                                 </li>
